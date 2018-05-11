@@ -5,7 +5,12 @@ const path = require('path');
 const fs = require('fs');
 const bodyparser = require('body-parser')
 const request = require('request');
-const config = require('./config.json');
+let config;
+try {
+    config = require('./config.json');
+} catch(e) {
+    console.log(e);
+}
 var FormData = require('form-data');
 var mjAPI = require("mathjax-node");
 mjAPI.config({
