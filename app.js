@@ -24,7 +24,6 @@ app.get('/', function(req, res) {
 });
 
 app.post('/image', function(req, res) {
-    //console.log(req.body);
     mjAPI.start();
     var intosvg = req.body.image;
     mjAPI.typeset({

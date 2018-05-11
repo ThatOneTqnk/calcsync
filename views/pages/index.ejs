@@ -21,10 +21,10 @@
     <body>
         <div class="center">
             <h2>CalcSync</h2>
-            <p style="padding: 25;">Simple way to turn an otherwise ugly math expression into a cool image<br> to communicate to students, colleagues, or friends!</p><br><br><br>
+            <p style="padding: 25;">Simple way to turn an otherwise ugly math expression into a cool image<br> to communicate to students, colleagues, or friends!</p>
             <p>Type math here: <br> 
             <span id="math-field"></span></p>
-            <p>LaTeX of what you typed: <span id="latex"></span></p>
+            <span id="latex" style="display: none"></span></p>
             <script>
                 var mathFieldSpan = document.getElementById('math-field');
                 var latexSpan = document.getElementById('latex');
@@ -41,7 +41,8 @@
             </script><br><br><br>
             <button class="btn waves-effect waves-light" id="render" name="action">Submit
                 <i class="material-icons right">send</i>
-            </button>
+            </button><br><br>
+            <div id="dump"></div>
         </div>
         <script src="/js/index.js"></script>
     </body>

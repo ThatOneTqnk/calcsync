@@ -4,16 +4,27 @@ $(document).ready(() => {
         let inout = $('#latex').html();
         $.post("image", {image: inout})
         .done((data) => {
+            console.log('bad');
             respdata = data;
-            getImage(respdata);
+            getImage(respdata, (returned) => {
+                if(document.getElementById('garbage')) {
+                    var elem = document.getElementById('garbage');
+                    elem.parentNode.removeChild(elem);
+                }
+                var interimg = document.createElement("img");
+                console.log(returned);
+                interimg.src = returned;
+                interimg.id = 'garbage';
+                document.getElementById('dump').appendChild(interimg);
+            });
         })
         .fail(() => {
             console.log('fail')
         });
-        
-    function getImage(enter) {
+    });
+    function getImage(enter, callback) {
         var canvas = document.createElement("canvas"),
-            ctx = canvas.getContext("2d");
+        ctx = canvas.getContext("2d");
         let background;
         let output;
         var image = new Image();
@@ -29,18 +40,10 @@ $(document).ready(() => {
             background.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAYAAAA8AXHiAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABfElEQVR4Xu3SMQEAAAzDoPk33anIBxq4QUAsEmKREIuEWCTEIiEWCbFIiEVCLBJikRCLhFgkxCIhFgmxSIhFQiwSYpEQi4RYJMQiIRYJsUiIRUIsEmKREIuEWCTEIiEWCbFIiEVCLBJikRCLhFgkxCIhFgmxSIhFQiwSYpEQi4RYJMQiIRYJsUiIRUIsEmKREIuEWCTEIiEWCbFIiEVCLBJikRCLhFgkxCIhFgmxSIhFQiwSYpEQi4RYJMQiIRYJsUiIRUIsEmKREIuEWCTEIiEWCbFIiEVCLBJikRCLhFgkxCIhFgmxSIhFQiwSYpEQi4RYJMQiIRYJsUiIRUIsEmKREIuEWCTEIiEWCbFIiEVCLBJikRCLhFgkxCIhFgmxSIhFQiwSYpEQi4RYJMQiIRYJsUiIRUIsEmKREIuEWCTEIiEWCbFIiEVCLBJikRCLhFgkxCIhFgmxSIhFQiwSYpEQi4RYJMQiIRYJsUiIRUIsEmKREIuEWCTEIrA9pZ1E87RkRjMAAAAASUVORK5CYII=";
             background.onload = function() {
                 ctx.drawImage(background, 0, 0);
-                // var canvas1 = document.createElement('canvas');
-                // canvas1.width = image.width;
-                // canvas1.height = image.height;
-                // var context = canvas1.getContext('2d');
-                // context.drawImage(image, 0, 0);
                 ctx.drawImage(image, canvas.width / 2 - image.width / 2, canvas.height / 2 - image.height / 2);
                 output = canvas.toDataURL('image/png');
-                console.log(output); 
+                callback(output);
             }
         }
-        return output;
     };
-
-    })
 })
