@@ -46,33 +46,33 @@ app.post('/image', function(req, res) {
     
 })
 
-app.post('/imgapi', (req, res) => {
-    let innerContent = req.body;
-    var form = new FormData();
-    var formData = {
-        image: innerContent.interimg,
-        type: "base64"
-    }
-    console.log(form);
-    request.post({
-        async: true,
-        crossDomain: true,
-        url: "https://api.imgur.com/3/image",
-        method: "POST",
-        headers: {
-            Authorization: `Client-ID ${config.imgurid}`
-        },
-        processData: false,
-        contentType: false,
-        mimeType: "multipart/form-data",
-        formData: formData
-    }, (err, resp, body) => {
-        if(err) console.log(err);
-        console.log('upload was successful, body res: ' + body);
-        let realdata = JSON.parse(body);
-        res.send(realdata.data.link)
-    })
-});
+// app.post('/imgapi', (req, res) => {
+//     let innerContent = req.body;
+//     var form = new FormData();
+//     var formData = {
+//         image: innerContent.interimg,
+//         type: "base64"
+//     }
+//     console.log(form);
+//     request.post({
+//         async: true,
+//         crossDomain: true,
+//         url: "https://api.imgur.com/3/image",
+//         method: "POST",
+//         headers: {
+//             Authorization: `Client-ID ${config.imgurid}`
+//         },
+//         processData: false,
+//         contentType: false,
+//         mimeType: "multipart/form-data",
+//         formData: formData
+//     }, (err, resp, body) => {
+//         if(err) console.log(err);
+//         console.log('upload was successful, body res: ' + body);
+//         let realdata = JSON.parse(body);
+//         res.send(realdata.data.link)
+//     })
+// });
 
 app.listen(PORT, () => {
     console.log(`App started on port ${PORT}`)
