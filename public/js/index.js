@@ -16,7 +16,7 @@ $(document).ready(() => {
     $('#render').click(() => {
         $('#addimg').attr('href', '#');
         $('#addimg').attr('target', '');
-        $('#dispense').attr('value', '')
+        $('#dispense').attr('value', 'Uploading to imgur...')
         $('.spin').css('display', 'inline');
         $('.imgarea').css('display', 'none')
         let respdata;
