@@ -16,6 +16,7 @@ $(document).ready(() => {
                 interimg.src = returned;
                 interimg.id = 'garbage';
                 document.getElementById('dump').appendChild(interimg);
+                zucc(returned);
             });
         })
         .fail(() => {
@@ -46,4 +47,17 @@ $(document).ready(() => {
             }
         }
     };
+
+    function zucc(img) {
+        let oof = img.replace('data:image/png;base64,', '');
+        $.post("imgapi", {interimg: oof})
+        .done((data) => {
+            console.log(data);
+            $('#resimgur').html(data);
+            $('#resimgur').attr("href", data);
+        })
+        .fail(() => {
+            console.log('fail')
+        })
+    }
 })
