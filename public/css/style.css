@@ -1,3 +1,109 @@
+/* width */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: black;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(95, 86, 86); 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #2c2626; 
+}
+
 p {
-    font-size: 125%;
+    font-size: 130%;
+    color: rgb(78, 73, 73);
+}
+body {
+    background-image: url('/img/lightd.png');
+}
+
+#math-field {
+    max-width: 100% !important;
+    min-width: 98% !important;
+    max-height: 100% !important;
+    min-height: 25% !important;
+}
+.topcut, .sidecut {
+    margin-left: 3% !important;
+}
+.minitop {
+    padding-top: 4% !important;
+}
+.megatop {
+    margin-top: 7% !important;
+}
+@media screen and (min-width: 768px) {
+    .topcut, .topmargin {
+        margin-top: 5% !important;
+    }
+}
+@media screen and (max-width: 767px) {
+    .megatop {
+        margin-top: 9% !important;
+    }
+    .minitop {
+        padding-top: 7% !important;
+    }
+    .topcut {
+        margin-top: 9% !important;
+        margin-left: 8% !important;
+    }
+    .topmargin {
+        margin-top: 9% !important;
+    }
+    .sidecut {
+        margin-left: 8% !important;
+    }
+}
+
+
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 17px;
+}
+
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
 }

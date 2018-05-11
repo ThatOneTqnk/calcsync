@@ -1,5 +1,16 @@
 $(document).ready(() => {
+    $('.lastcop').click(() => {
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        x.innerHTML = 'Copied to clipboard!';
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    })
     $('#render').click(() => {
+        $('#addimg').attr('href', '#');
+        $('#addimg').attr('target', '');
+        $('#dispense').attr('value', '')
+        $('.spin').css('display', 'inline');
+        $('.imgarea').css('display', 'none')
         let respdata;
         let inout = $('#latex').html();
         $.post("image", {image: inout})
@@ -13,10 +24,13 @@ $(document).ready(() => {
                 }
                 var interimg = document.createElement("img");
                 console.log(returned);
+                $('.placehold').html('');
                 interimg.src = returned;
                 interimg.id = 'garbage';
-                document.getElementById('dump').appendChild(interimg);
+                document.getElementById('addimg').appendChild(interimg);
+                //$('#garbage').addClass('centered')
                 zucc(returned);
+                $('.spin').css('display', 'none');
             });
         })
         .fail(() => {
@@ -53,8 +67,11 @@ $(document).ready(() => {
         $.post("imgapi", {interimg: oof})
         .done((data) => {
             console.log(data);
-            $('#resimgur').html(data);
-            $('#resimgur').attr("href", data);
+            // $('#resimgur').html(data);
+            // $('#resimgur').attr("href", data);
+            $('#dispense').attr('value', data)
+            $('#addimg').attr('href', data);
+            $('#addimg').attr('target', '_blank');
         })
         .fail(() => {
             console.log('fail')

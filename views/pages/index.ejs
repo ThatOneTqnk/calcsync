@@ -1,7 +1,7 @@
 <html>
     <head>
         <!--
-          _____    _____     ____   . .
+          _____    _____     ____   | /
             |     |     |   |    |  |/    
             |     |_____|   |    |  |\  
             |           \   |    |  | \
@@ -9,43 +9,83 @@
             Looking under the hood? Nothing good here mate.
         -->
         <% include ../partials/header.ejs %>
+        <title>CalcSync</title>
         <link href="/css/style.css" rel="stylesheet">
         <link rel="stylesheet" href="/css/mathquill.css"/> <!-- CSS for MQ -->
-        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="/js/mathquill.js"></script> <!-- Adding input form -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
         <!-- <script src="/js/texjax.js"></script> Removing Client-side MathJAX -->
         <script>
         var MQ = MathQuill.getInterface(2);
         </script>
     </head>
     <body>
-        <div class="center">
-            <h2>CalcSync</h2>
-            <p style="padding: 25;">Simple way to turn an otherwise ugly math expression into a cool image<br> to communicate to students, colleagues, or friends!</p>
-            <p>Type math here: <br> 
-            <span id="math-field"></span></p>
-            <span id="latex" style="display: none"></span></p>
-            <script>
-                var mathFieldSpan = document.getElementById('math-field');
-                var latexSpan = document.getElementById('latex');
-
-                var MQ = MathQuill.getInterface(2);
-                var mathField = MQ.MathField(mathFieldSpan, {
-                spaceBehavesLikeTab: true,
-                handlers: {
-                    edit: function() {
-                    latexSpan.textContent = mathField.latex();
-                    }
-                }
-                });
-            </script><br><br><br>
-            <button class="btn waves-effect waves-light" id="render" name="action">Submit
-                <i class="material-icons right">send</i>
-            </button><br><br>
-            <div id="dump"></div>
-            <br><br>
-            <a id="resimgur" target=_blank></a>
+        <div class="ui stackable two column grid">
+            <div class="row">
+                <div class="eight wide column topcut">
+                    
+                    <h2>CalcSync</h2>
+                    <p>Simple way to turn an otherwise ugly math expression into a cool image<br> to communicate to students, colleagues, or friends! This project is open source on GitHub. If you want to contribute, the repository can be found <a href="https://github.com/ThatOneTqnk/calcsync" target=_blank >here.</a><br><br>Enter in math jargon below, click Submit, and a picture will appear. You can either save the picture or use the Imgur link to embed it elsewhere!</p>
+                </div>
+                <div class="seven wide column topcut">
+                    <p>Type math here:<br><br> 
+                    <span id="math-field"></span></p>
+                </div>
+            </div>
         </div>
+        <br><br><br>
+        <div class="ui container center aligned">
+            <button class="ui centered primary button" id="render">Submit</button>
+        </div>
+        <br><br>
+        <hr style="width: 90%;">
+        <div id="dump">
+            <div class="spin" style="display: none">
+                <br><br>
+                <div class="ui active inline loader centered"></div>
+            </div>
+            <p class="ui center aligned header megatop imgarea">Image will appear here!</p>
+            <div id="dumpdos" class="ui container center aligned">
+                <br><br>
+                <a href="#" id="addimg" target=_blank></a>
+            </div>
+            <br><br><br>
+            <div class="ui container center aligned">
+                <div class="ui action input">
+                    <input type="text" id="dispense" value="">
+                    <button class="ui teal right labeled icon button lastcop" data-clipboard-target="#dispense">Copy</button>
+                </div>
+            </div>
+            <br><br><br>
+        </div>
+            
+        </div>
+        <span id="latex" style="display: none"></span></p>
+        <script>
+            var mathFieldSpan = document.getElementById('math-field');
+            var latexSpan = document.getElementById('latex');
+
+            var MQ = MathQuill.getInterface(2);
+            var mathField = MQ.MathField(mathFieldSpan, {
+            spaceBehavesLikeTab: true,
+            handlers: {
+                edit: function() {
+                latexSpan.textContent = mathField.latex();
+                }
+            }
+            });
+        </script>
+        <a id="resimgur" target=_blank></a>
         <script src="/js/index.js"></script>
+        <script>
+            var clipboard = new ClipboardJS('.lastcop');
+            clipboard.on('success', function(e) {
+                console.log(e);
+            });
+            clipboard.on('error', function(e) {
+                console.log(e);
+            });
+        </script>
+        <div id="snackbar">Math is good</div>
     </body>
 </html>
