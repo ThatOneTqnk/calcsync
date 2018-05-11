@@ -1,2 +1,2 @@
 # calcsync
-Take jumbled math into a clear-cut image.
+Transform jumbled math into a clear-cut image.

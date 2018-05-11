@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <!--
+          _____    _____     ____   . .
+            |     |     |   |    |  |/    
+            |     |_____|   |    |  |\  
+            |           \   |    |  | \
+
+            Looking under the hood? Nothing good here mate.
+        -->
+        <% include ../partials/header.ejs %>
+        <link href="/css/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="/css/mathquill.css"/> <!-- CSS for MQ -->
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="/js/mathquill.js"></script> <!-- Adding input form -->
+        <!-- <script src="/js/texjax.js"></script> Removing Client-side MathJAX -->
+        <script>
+        var MQ = MathQuill.getInterface(2);
+        </script>
+    </head>
+    <body>
+        <div class="center">
+            <h2>CalcSync</h2>
+            <p style="padding: 25;">Simple way to turn an otherwise ugly math expression into a cool image<br> to communicate to students, colleagues, or friends!</p><br><br><br>
+            <p>Type math here: <br> 
+            <span id="math-field"></span></p>
+            <p>LaTeX of what you typed: <span id="latex"></span></p>
+            <script>
+                var mathFieldSpan = document.getElementById('math-field');
+                var latexSpan = document.getElementById('latex');
+
+                var MQ = MathQuill.getInterface(2);
+                var mathField = MQ.MathField(mathFieldSpan, {
+                spaceBehavesLikeTab: true,
+                handlers: {
+                    edit: function() {
+                    latexSpan.textContent = mathField.latex();
+                    }
+                }
+                });
+            </script><br><br><br>
+            <button class="btn waves-effect waves-light" id="render" name="action">Submit
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
+        <script src="/js/index.js"></script>
+    </body>
+</html>
