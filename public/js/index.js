@@ -3,6 +3,10 @@ $(document).ready(() => {
         mathField.write('\\int\\left(\\right)');
         mathField.focus();
     })
+    $('.pi').click(() => {
+        mathField.write('\\pi');
+        mathField.focus();
+    })
     $('.lastcop').click(() => {
         var x = document.getElementById("snackbar");
         x.className = "show";
