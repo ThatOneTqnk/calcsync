@@ -5,7 +5,7 @@ const path = require('path');
 const fs = require('fs');
 const bodyparser = require('body-parser')
 const request = require('request');
-const config = require('./config.json');
+//const config = require('./config.json');
 var FormData = require('form-data');
 var mjAPI = require("mathjax-node");
 mjAPI.config({
@@ -58,7 +58,7 @@ app.post('/imgapi', (req, res) => {
         url: "https://api.imgur.com/3/image",
         method: "POST",
         headers: {
-            Authorization: `Client-ID ${config.imgurid}`
+            Authorization: `Client-ID ${process.env.imgurid}`
         },
         processData: false,
         contentType: false,
