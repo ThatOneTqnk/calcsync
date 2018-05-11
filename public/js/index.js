@@ -1,4 +1,8 @@
 $(document).ready(() => {
+    $('.integral').click(() => {
+        mathField.write('\\int\\left(\\right)');
+        mathField.focus();
+    })
     $('.lastcop').click(() => {
         var x = document.getElementById("snackbar");
         x.className = "show";
