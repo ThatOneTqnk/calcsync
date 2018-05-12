@@ -31,9 +31,9 @@ app.get('/', function(req, res) {
     res.render('pages/index')
 });
 
-app.get('/learn', (req, res) => {
-    res.render('pages/learn');
-})
+// app.get('/learn', (req, res) => {
+//     res.render('pages/learn');
+// })
 
 app.post('/image', function(req, res) {
     mjAPI.start();
