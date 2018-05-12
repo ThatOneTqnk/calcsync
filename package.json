@@ -4,7 +4,7 @@
   "description": "math to pic",
   "main": "app.js",
   "scripts": {
-    "test": "app.js",
+    "test": "node app.js",
     "start": "app.js"
   },
   "repository": {
