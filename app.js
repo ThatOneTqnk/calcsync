@@ -56,6 +56,14 @@ app.post('/image', function(req, res) {
 app.post('/imgapi', (req, res) => {
     let innerContent = req.body;
     var form = new FormData();
+    if(innerContent.width >= 1100) {
+        res.send({zuccerror: 2});
+        return;
+    }
+    if(innerContent.height >= 340) {
+        res.send({zuccerror: 1});
+        return;
+    }
     var formData = {
         image: innerContent.interimg,
         type: "base64"

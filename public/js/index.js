@@ -1,4 +1,5 @@
 $(document).ready(() => {
+    var image;
     let inprogress = false;
     $('.integral').click(() => {
         mathField.write('\\int\\left(\\right)');
@@ -59,6 +60,9 @@ $(document).ready(() => {
             });
         })
         .fail(() => {
+            inprogress = false;
+            resetImgur('');
+            snacc('Image failed to render.');
             console.log('fail')
         });
     });
@@ -67,7 +71,7 @@ $(document).ready(() => {
         ctx = canvas.getContext("2d");
         let background;
         let output;
-        var image = new Image();
+        image = new Image();
         image.src = 'data:image/svg+xml;base64,' + window.btoa(unescape(encodeURIComponent(enter.img)));
         image.onload = function() {
             console.log(image.width + 75);
@@ -89,11 +93,21 @@ $(document).ready(() => {
 
     function zucc(img) {
         let oof = img.replace('data:image/png;base64,', '');
-        $.post("imgapi", {interimg: oof})
+        $.post("imgapi", {interimg: oof, height: image.height + 75, width: image.width + 75})
         .done((data) => {
-            console.log(data);
+            // console.log(data);
             // $('#resimgur').html(data);
             // $('#resimgur').attr("href", data);
+            if(data.zuccerror) {
+                inprogress = false;
+                resetImgur('');
+                if(data.zuccerror === 1) {
+                    snacc('Imgur failed. Height must be < 340.')
+                } else if(data.zuccerror === 2) {
+                    snacc('Imgur failed. Width must be < 1100.') 
+                }
+                return; 
+            }
             $('.lastcop').prop("disabled", false);
             $('#dispense').attr('value', data)
             $('#addimg').attr('href', data);
@@ -101,7 +115,14 @@ $(document).ready(() => {
             inprogress = false;
         })
         .fail(() => {
+            inprogress = false;
+            resetImgur('');
+            snacc('Imgur upload failed.');
             console.log('fail')
         })
+    }
+
+    function resetImgur(content) {
+        $('#dispense').attr('value', content)
     }
 })
