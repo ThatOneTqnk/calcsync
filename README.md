@@ -5,5 +5,5 @@
 Transform jumbled math into a clear-cut image.
 
 
-# To-do list
+**To-do list**
 - Error handling.
