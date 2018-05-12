@@ -1,4 +1,5 @@
 $(document).ready(() => {
+    let inprogress = false;
     $('.integral').click(() => {
         mathField.write('\\int\\left(\\right)');
         mathField.focus();
@@ -17,6 +18,12 @@ $(document).ready(() => {
         setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
     }
     $('#render').click(() => {
+        if(inprogress) {
+            snacc('Request in progress!')
+            $('.lastcop').prop("disabled", false);
+            return;
+        }
+        inprogress = true;
         $('.lastcop').prop("disabled", true);
         let inout = $('#latex').html();
         console.log(inout);
@@ -91,6 +98,7 @@ $(document).ready(() => {
             $('#dispense').attr('value', data)
             $('#addimg').attr('href', data);
             $('#addimg').attr('target', '_blank');
+            inprogress = false;
         })
         .fail(() => {
             console.log('fail')
