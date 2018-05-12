@@ -29,8 +29,11 @@ $(document).ready(() => {
         let inout = $('#latex').html();
         console.log(inout);
         if(inout === '') {
-            snacc('Invalid input!')
-            $('.lastcop').prop("disabled", false);
+            errored('Invalid input.');
+            return;
+        }
+        if(inout.length === ((inout.split(" ").length - 1) + (inout.split("\\").length - 1))) {
+            errored('Bad input.');
             return;
         }
         $('#addimg').attr('href', 'javascript:void 0');
@@ -43,6 +46,11 @@ $(document).ready(() => {
         .done((data) => {
             console.log('bad');
             respdata = data;
+            if(respdata.zuccess === 0) {
+                $('.spin').css('display', 'none');
+                errored('Could not process image.');
+                return;
+            }
             getImage(respdata, (returned) => {
                 if(document.getElementById('garbage')) {
                     var elem = document.getElementById('garbage');
@@ -124,5 +132,13 @@ $(document).ready(() => {
 
     function resetImgur(content) {
         $('#dispense').attr('value', content)
+    }
+
+    function errored(content) {
+        inprogress = false;
+        snacc(content);
+        resetImgur('');
+        $('.lastcop').prop("disabled", true);
+        return;
     }
 })
