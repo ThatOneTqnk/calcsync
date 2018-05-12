@@ -8,19 +8,29 @@ $(document).ready(() => {
         mathField.focus();
     })
     $('.lastcop').click(() => {
+        snacc('Copied to clipboard!')
+    })
+    function snacc(render) {
         var x = document.getElementById("snackbar");
         x.className = "show";
-        x.innerHTML = 'Copied to clipboard!';
+        x.innerHTML = render;
         setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-    })
+    }
     $('#render').click(() => {
+        $('.lastcop').prop("disabled", true);
+        let inout = $('#latex').html();
+        console.log(inout);
+        if(inout === '') {
+            snacc('Invalid input!')
+            $('.lastcop').prop("disabled", false);
+            return;
+        }
         $('#addimg').attr('href', '#');
         $('#addimg').attr('target', '');
         $('#dispense').attr('value', 'Uploading to imgur...')
         $('.spin').css('display', 'inline');
         $('.imgarea').css('display', 'none')
         let respdata;
-        let inout = $('#latex').html();
         $.post("image", {image: inout})
         .done((data) => {
             console.log('bad');
@@ -77,6 +87,7 @@ $(document).ready(() => {
             console.log(data);
             // $('#resimgur').html(data);
             // $('#resimgur').attr("href", data);
+            $('.lastcop').prop("disabled", false);
             $('#dispense').attr('value', data)
             $('#addimg').attr('href', data);
             $('#addimg').attr('target', '_blank');
