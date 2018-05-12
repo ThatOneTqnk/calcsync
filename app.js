@@ -3,7 +3,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const path = require('path');
 const fs = require('fs');
-const bodyparser = require('body-parser')
+const bodyparser = require('body-parser');
 const request = require('request');
 let config;
 try {
@@ -20,15 +20,15 @@ mjAPI.config({
 });
 
 app.set('view engine', 'ejs');
-app.use(express.static('public'))
+app.use(express.static('public'));
 app.use(bodyparser.urlencoded({
     extended: true
 }));
-app.use(bodyparser.json())
+app.use(bodyparser.json());
 
 
 app.get('/', function(req, res) {
-    res.render('pages/index')
+    res.render('pages/index');
 });
 
 // app.get('/learn', (req, res) => {
@@ -51,7 +51,7 @@ app.post('/image', function(req, res) {
         }
     });
     
-})
+});
 
 app.post('/imgapi', (req, res) => {
     let innerContent = req.body;
@@ -67,7 +67,7 @@ app.post('/imgapi', (req, res) => {
     var formData = {
         image: innerContent.interimg,
         type: "base64"
-    }
+    };
     console.log(form);
     request.post({
         async: true,
@@ -85,10 +85,10 @@ app.post('/imgapi', (req, res) => {
         if(err) console.log(err);
         console.log('upload was successful, body res: ' + body);
         let realdata = JSON.parse(body);
-        res.send(realdata.data.link)
-    })
+        res.send(realdata.data.link);
+    });
 });
 
 app.listen(PORT, () => {
-    console.log(`App started on port ${PORT}`)
-})
+    console.log(`App started on port ${PORT}`);
+});
