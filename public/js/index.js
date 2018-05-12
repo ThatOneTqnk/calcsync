@@ -33,7 +33,7 @@ $(document).ready(() => {
             $('.lastcop').prop("disabled", false);
             return;
         }
-        $('#addimg').attr('href', '#');
+        $('#addimg').attr('href', 'javascript:void 0');
         $('#addimg').attr('target', '');
         $('#dispense').attr('value', 'Uploading to imgur...')
         $('.spin').css('display', 'inline');
