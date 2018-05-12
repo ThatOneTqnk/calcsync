@@ -4,7 +4,7 @@
   "description": "math to pic",
   "main": "app.js",
   "scripts": {
-    "test": "node app.js",
+    "test": "jshint app.js",
     "start": "app.js"
   },
   "repository": {
@@ -27,5 +27,8 @@
     "form-data": "^2.3.2",
     "mathjax-node": "^2.1.0",
     "request": "^2.85.0"
+  },
+  "devDependencies": {
+    "jshint": "^2.9.5"
   }
 }
