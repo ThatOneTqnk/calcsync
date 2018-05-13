@@ -1,6 +1,10 @@
 $(document).ready(() => {
     var image;
     let inprogress = false;
+    $('.sigma').click(() => {
+        mathField.write('\\sum');
+        mathField.focus();
+    })
     $('.subsc').click(() => {
         mathField.write('\\subscript1');
         mathField.focus();
