@@ -1,6 +1,10 @@
 $(document).ready(() => {
     var image;
     let inprogress = false;
+    $('.subsc').click(() => {
+        mathField.write('\\subscript1');
+        mathField.focus();
+    })
     $('.integral').click(() => {
         mathField.write('\\int\\left(\\right)');
         mathField.focus();
