@@ -17,6 +17,10 @@ $(document).ready(() => {
         mathField.write('\\pi');
         mathField.focus();
     })
+    $('.sqrt').click(() => {
+        mathField.write('\\sqrt[]{}');
+        mathField.focus();
+    })
     $('.lastcop').click(() => {
         snacc('Copied to clipboard!')
     })
