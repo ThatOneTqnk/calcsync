@@ -21,6 +21,10 @@ $(document).ready(() => {
         mathField.write('\\sqrt[]{}');
         mathField.focus();
     })
+    $('.fraction').click(() => {
+        mathField.write('\\frac{ }{ }');
+        mathField.focus();
+    })
     $('.lastcop').click(() => {
         snacc('Copied to clipboard!')
     })
