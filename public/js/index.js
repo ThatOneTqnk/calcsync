@@ -1,6 +1,22 @@
 $(document).ready(() => {
     var image;
     let inprogress = false;
+    $('.alpha').click(() => {
+        mathField.write('\\alpha');
+        mathField.focus();
+    })
+    $('.beta').click(() => {
+        mathField.write('\\beta');
+        mathField.focus();
+    })
+    $('.theta').click(() => {
+        mathField.write('\\theta');
+        mathField.focus();
+    })
+    $('.mu').click(() => {
+        mathField.write('\\mu');
+        mathField.focus();
+    })
     $('.sigma').click(() => {
         mathField.write('\\sum');
         mathField.focus();
